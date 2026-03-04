@@ -38,7 +38,7 @@ export const desks: Product[] = [
     category: "desk",
     weeklyPrice: 5,
     monthlyPrice: 14,
-    imageSrc: "/products/desk.webp",
+    imageSrc: "/products/desk_2.webp",
     features: [
       "Manual height: 70-120cm",
       "No power needed",

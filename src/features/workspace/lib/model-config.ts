@@ -8,7 +8,7 @@ export const DEFAULT: IDefault = {
 export const MODEL_CONFIG: Record<string, ModelConfig> = {
     // Desks
     "desk-electrical": { path: "/3d/desk_1.glb", position: DEFAULT.desk.position, scale: DEFAULT.desk.scale, rotation: DEFAULT.desk.rotation },
-    "desk-mechanical": { path: "/3d/desk_1.glb", position: DEFAULT.desk.position, scale: DEFAULT.desk.scale, rotation: DEFAULT.desk.rotation },
+    "desk-mechanical": { path: "/3d/desk_2.glb", position: DEFAULT.desk.position, scale: 1.1, rotation: DEFAULT.desk.rotation },
     "desk-basic": { path: "/3d/desk_1.glb", position: DEFAULT.desk.position, scale: DEFAULT.desk.scale, rotation: DEFAULT.desk.rotation },
     // Chairs
     "chair-ergonomic": { path: "/3d/chair_2.glb", position: [0, 0.43, -0.7], scale: 0.46, rotation: DEFAULT.chair.rotation },
