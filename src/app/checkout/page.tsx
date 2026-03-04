@@ -1,23 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import { useWorkspace } from "@/context/workspace-context";
+import Navbar from "@/shared/components/layout/Navbar";
+import { useCatalogStore } from "@/features/catalog/store/useCatalogStore";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function CheckoutPage() {
-  const {
-    selectedDesk,
-    selectedChair,
-    accessories,
-    rentalPeriod,
-    setRentalPeriod,
-    totalPrice,
-    allSelectedItems,
-    itemCount,
-  } = useWorkspace();
+  const selectedDesk = useCatalogStore((s) => s.selectedDesk);
+  const selectedChair = useCatalogStore((s) => s.selectedChair);
+  const accessories = useCatalogStore((s) => s.accessories);
+  const rentalPeriod = useCatalogStore((s) => s.rentalPeriod);
+  const setRentalPeriod = useCatalogStore((s) => s.setRentalPeriod);
+  const totalPrice = useCatalogStore((s) => s.totalPrice);
+  const allSelectedItems = useCatalogStore((s) => s.allSelectedItems);
+  const itemCount = useCatalogStore((s) => s.itemCount);
 
   const [formData, setFormData] = useState({
     name: "",

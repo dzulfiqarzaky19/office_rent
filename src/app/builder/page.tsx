@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import CategoryPanel from "@/components/CategoryPanel";
-import WorkspacePreview from "@/components/WorkspacePreview";
-import SummaryPanel from "@/components/SummaryPanel";
+import Navbar from "@/shared/components/layout/Navbar";
+import CategoryPanel from "@/features/catalog/components/CategoryPanel";
+import WorkspaceScene from "@/features/workspace/components/WorkspaceScene";
+import SummaryPanel from "@/features/catalog/components/SummaryPanel";
 import { motion, AnimatePresence } from "framer-motion";
-import { useWorkspace } from "@/context/workspace-context";
+import { useCatalogStore } from "@/features/catalog/store/useCatalogStore";
 import Link from "next/link";
 
 export default function BuilderPage() {
   const [showMobileSummary, setShowMobileSummary] = useState(false);
-  const { itemCount, totalPrice } = useWorkspace();
+  const itemCount = useCatalogStore((s) => s.itemCount);
+  const totalPrice = useCatalogStore((s) => s.totalPrice);
 
   return (
     <main className="relative min-h-screen">
@@ -29,7 +30,7 @@ export default function BuilderPage() {
 
           <div className="flex-1 flex items-center justify-center p-4">
             <div className="w-full max-w-[900px] aspect-4/3 bg-white border border-border-main overflow-hidden relative">
-              <WorkspacePreview />
+              <WorkspaceScene />
             </div>
           </div>
 
