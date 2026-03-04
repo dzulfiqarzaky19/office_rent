@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import WorkspaceScene from "./WorkspaceScene";
+import { WorkspaceScene } from "./WorkspaceScene";
 import { useCatalogStore } from "@/features/catalog/store/useCatalogStore";
 
 export const WorkspaceLayout = () => {

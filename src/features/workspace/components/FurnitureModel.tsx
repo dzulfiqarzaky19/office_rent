@@ -7,12 +7,18 @@ import type { ModelConfig } from "../types";
 
 type FurnitureModelProps = Omit<ModelConfig, "path"> & { path: string };
 
-export function FurnitureModel({ path, position = [0, 0, 0], scale = 1, rotation = [0, 0, 0] }: FurnitureModelProps) {
+export const FurnitureModel = ({
+  path,
+  position = [0, 0, 0],
+  scale = 1,
+  rotation = [0, 0, 0],
+}: FurnitureModelProps) => {
   const { scene } = useGLTF(path);
   const ref = useRef<Group>(null);
+
   return (
     <group ref={ref} position={position} rotation={rotation}>
       <primitive object={scene.clone()} scale={scale} />
     </group>
   );
-}
+};
