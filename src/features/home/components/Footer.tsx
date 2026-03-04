@@ -15,9 +15,7 @@ const NAV_COLS = [
   },
 ];
 
-/** Pure server component — zero client JS. */
-export function Footer() {
-  return (
+export const Footer = () => (
     <footer className="py-24 px-4 border-t border-border-main bg-white">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-16">
         <div className="flex flex-col gap-6">
@@ -51,4 +49,3 @@ export function Footer() {
       </div>
     </footer>
   );
-}

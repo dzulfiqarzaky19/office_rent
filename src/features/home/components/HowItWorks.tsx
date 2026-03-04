@@ -6,8 +6,7 @@ const STEPS = [
   { title: "RENT",    desc: "Confirm your selection for complimentary delivery and setup in Bali" },
 ];
 
-export function HowItWorks() {
-  return (
+export const HowItWorks = () => (
     <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-border-main">
       <FadeIn y={15} duration={0.5} className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
         <div>
@@ -40,4 +39,3 @@ export function HowItWorks() {
       </div>
     </section>
   );
-}

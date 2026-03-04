@@ -1,14 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/shared/motion/FadeIn";
+import { MotionButton } from "@/shared/components/motion/MotionButton";
 
-export function HeroSection() {
-  return (
+export const HeroSection = () => (
     <section className="relative pt-[calc(var(--page-pt)+40px)] pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <FadeIn viewport={false} delay={0} duration={0.8} y={30} className="text-center">
-        {/* Availability badge */}
+
         <FadeIn viewport={false} delay={0.2} scale={0.9} y={0}>
           <div className="inline-flex items-center gap-2 border border-border-light px-4 py-2 mb-10">
             <span className="relative flex h-1.5 w-1.5">
@@ -34,16 +31,15 @@ export function HeroSection() {
 
         <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/builder">
-            <motion.button
+            <MotionButton
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
               className="px-16 py-5 bg-black text-white font-prada text-[11px] tracking-[0.4em] hover:bg-zinc-800 transition-all cursor-pointer font-bold"
             >
               START BUILDING
-            </motion.button>
+            </MotionButton>
           </Link>
         </div>
       </FadeIn>
     </section>
   );
-}

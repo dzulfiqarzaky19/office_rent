@@ -6,9 +6,7 @@ const TESTIMONIALS = [
   { name: "LISA M.",  role: "FOUNDER",      text: "Functional excellence meets minimalist design. Essential for the modern nomad." },
 ];
 
-/** Server component — all data is static, FadeIn provides per-card animation. */
-export function Testimonials() {
-  return (
+export const Testimonials = () =>  (
     <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-border-main">
       <FadeIn y={15} duration={0.5} className="mb-24">
         <span className="font-prada text-[10px] text-text-muted tracking-[0.4em] uppercase mb-4 block">
@@ -34,4 +32,3 @@ export function Testimonials() {
       </div>
     </section>
   );
-}
