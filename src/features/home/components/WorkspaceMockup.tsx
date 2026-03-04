@@ -1,3 +1,5 @@
+import { FadeIn } from "@/shared/motion/FadeIn";
+
 const MOCKUP_CALLOUTS = [
   { x1: 450, y1: 130, x2: 520, y2: 100, tx: 530, ty: 103, label: "STUDIO DISPLAY" },
   { x1: 415, y1: 230, x2: 480, y2: 210, tx: 490, ty: 213, label: "TASK CHAIR" },
@@ -13,6 +15,7 @@ const COLORS = {
 }
 
 export const WorkspaceMockup = () => (
+  <FadeIn delay={0.4} duration={0.8} y={40} viewport={false}>
     <div className="mt-32 max-w-6xl mx-auto border border-border-main p-1">
       <div className="bg-bg-offset p-6 sm:p-12 relative overflow-hidden">
         <div className="flex items-center gap-4 mb-8">
@@ -58,4 +61,5 @@ export const WorkspaceMockup = () => (
         </div>
       </div>
     </div>
-  );
+  </FadeIn>
+);
