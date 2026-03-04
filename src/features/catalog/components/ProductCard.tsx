@@ -1,7 +1,5 @@
-"use client";
-
 import { Product } from "../data/products";
-import { motion } from "framer-motion";
+import { MotionButton } from "@/shared/components/motion/MotionButton";
 import Image from "next/image";
 
 interface ProductCardProps {
@@ -11,17 +9,23 @@ interface ProductCardProps {
   rentalPeriod: "weekly" | "monthly";
 }
 
-export default function ProductCard({ product, isSelected, onSelect, rentalPeriod }: ProductCardProps) {
-  const price = rentalPeriod === "weekly" ? product.weeklyPrice : product.monthlyPrice;
+export const ProductCard = ({
+  product,
+  isSelected,
+  onSelect,
+  rentalPeriod,
+}: ProductCardProps) => {
+  const price =
+    rentalPeriod === "weekly" ? product.weeklyPrice : product.monthlyPrice;
   const periodLabel = rentalPeriod === "weekly" ? "/WK" : "/MO";
 
   return (
-    <motion.button
+    <MotionButton
       onClick={onSelect}
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
       className={`product-card w-full text-left p-4 mb-3 transition-all duration-200 cursor-pointer border ${
-        isSelected ? "border-black bg-white" : "border-border-light bg-white hover:border-border-main"
+        isSelected
+          ? "border-black bg-white"
+          : "border-border-light bg-white hover:border-border-main"
       }`}
     >
       <div className="flex items-start justify-between mb-3 min-w-0">
@@ -29,18 +33,27 @@ export default function ProductCard({ product, isSelected, onSelect, rentalPerio
           {product.name}
         </h3>
         <span className="shrink-0 font-prada text-[10px] text-black tracking-tighter">
-          ${price}{periodLabel}
+          ${price}
+          {periodLabel}
         </span>
       </div>
 
       <div className="flex gap-4 mb-4">
         <div className="w-24 h-24 bg-bg-offset border border-border-light shrink-0 overflow-hidden relative">
-          <Image src={product.imageSrc} alt={product.name} fill className="object-contain p-2" />
+          <Image
+            src={product.imageSrc}
+            alt={product.name}
+            fill
+            className="object-contain p-2"
+          />
         </div>
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex flex-wrap gap-2">
             {product.features.slice(0, 3).map((f, i) => (
-              <span key={i} className="font-prada text-[8px] text-text-muted tracking-widest uppercase border border-border-light px-1.5 py-0.5">
+              <span
+                key={i}
+                className="font-prada text-[8px] text-text-muted tracking-widest uppercase border border-border-light px-1.5 py-0.5"
+              >
                 {f}
               </span>
             ))}
@@ -56,6 +69,6 @@ export default function ProductCard({ product, isSelected, onSelect, rentalPerio
           {isSelected && <div className="w-1.5 h-1.5 bg-black rounded-full" />}
         </div>
       </div>
-    </motion.button>
+    </MotionButton>
   );
-}
+};

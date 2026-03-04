@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { desks, chairs, accessories } from "../data/products";
 import { useCatalogStore } from "../store/useCatalogStore";
-import ProductCard from "./ProductCard";
+import { ProductCard } from "./ProductCard";
+import { PopLayoutItem } from "@/shared/components/motion/PopLayoutItem";
+import { ActiveTabUnderline } from "@/shared/components/motion/ActiveTabUnderline";
 
 type Tab = "desks" | "chairs" | "accessories";
 const tabs: { id: Tab; label: string }[] = [
@@ -13,14 +15,14 @@ const tabs: { id: Tab; label: string }[] = [
   { id: "accessories", label: "ACCESSORIES" },
 ];
 
-export default function CategoryPanel() {
+export const CategoryPanel = () => {
   const [activeTab, setActiveTab] = useState<Tab>("desks");
   const selectedDesk = useCatalogStore((s) => s.selectedDesk);
   const selectedChair = useCatalogStore((s) => s.selectedChair);
+  const selectedAccessories = useCatalogStore((s) => s.accessories);
   const rentalPeriod = useCatalogStore((s) => s.rentalPeriod);
   const selectDesk = useCatalogStore((s) => s.selectDesk);
   const selectChair = useCatalogStore((s) => s.selectChair);
-  const hasAccessory = useCatalogStore((s) => s.hasAccessory);
   const toggleAccessory = useCatalogStore((s) => s.toggleAccessory);
 
   return (
@@ -31,46 +33,60 @@ export default function CategoryPanel() {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`relative flex-1 py-3 px-1 text-[10px] font-prada tracking-[0.2em] transition-all duration-200 cursor-pointer ${
-              activeTab === tab.id ? "text-black" : "text-text-muted hover:text-black"
+              activeTab === tab.id
+                ? "text-black"
+                : "text-text-muted hover:text-black"
             }`}
           >
-            {activeTab === tab.id && (
-              <motion.div
-                layoutId="activeTabUnderline"
-                className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-black"
-                transition={{ type: "spring", duration: 0.5, bounce: 0 }}
-              />
-            )}
+            {activeTab === tab.id && <ActiveTabUnderline />}
             <span className="relative z-10">{tab.label}</span>
           </button>
         ))}
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+      <div className="flex-1 min-h-0 overflow-y-auto pr-1 pb-4">
         <AnimatePresence mode="wait">
           {activeTab === "desks" && (
-            <motion.div key="desks" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="space-y-4">
+            <PopLayoutItem key="desks" className="space-y-4">
               {desks.map((desk) => (
-                <ProductCard key={desk.id} product={desk} isSelected={selectedDesk?.id === desk.id} onSelect={() => selectDesk(desk)} rentalPeriod={rentalPeriod} />
+                <ProductCard
+                  key={desk.id}
+                  product={desk}
+                  isSelected={selectedDesk?.id === desk.id}
+                  onSelect={() => selectDesk(desk)}
+                  rentalPeriod={rentalPeriod}
+                />
               ))}
-            </motion.div>
+            </PopLayoutItem>
           )}
           {activeTab === "chairs" && (
-            <motion.div key="chairs" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="space-y-4">
+            <PopLayoutItem key="chairs" className="space-y-4">
               {chairs.map((chair) => (
-                <ProductCard key={chair.id} product={chair} isSelected={selectedChair?.id === chair.id} onSelect={() => selectChair(chair)} rentalPeriod={rentalPeriod} />
+                <ProductCard
+                  key={chair.id}
+                  product={chair}
+                  isSelected={selectedChair?.id === chair.id}
+                  onSelect={() => selectChair(chair)}
+                  rentalPeriod={rentalPeriod}
+                />
               ))}
-            </motion.div>
+            </PopLayoutItem>
           )}
           {activeTab === "accessories" && (
-            <motion.div key="accessories" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="space-y-4">
+            <PopLayoutItem key="accessories" className="space-y-4">
               {accessories.map((acc) => (
-                <ProductCard key={acc.id} product={acc} isSelected={hasAccessory(acc.id)} onSelect={() => toggleAccessory(acc)} rentalPeriod={rentalPeriod} />
+                <ProductCard
+                  key={acc.id}
+                  product={acc}
+                  isSelected={selectedAccessories.some((a) => a.id === acc.id)}
+                  onSelect={() => toggleAccessory(acc)}
+                  rentalPeriod={rentalPeriod}
+                />
               ))}
-            </motion.div>
+            </PopLayoutItem>
           )}
         </AnimatePresence>
       </div>
     </div>
   );
-}
+};

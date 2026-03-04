@@ -35,5 +35,8 @@ The checkout and order confirmation flow.
 - The interactive glue was centralized within a specific boundary (`CheckoutClient.tsx`).
 - For optimal DX and re-usability, complex form state and WhatsApp message-generation logic was extracted into a custom hook (`useCheckoutForm.ts`), leaving the UI completely devoid of business logic and making it 100% focused on presentation.
 
+- **Builder Page Refactoring**: Extracted the sidebar structural layout wrapper into `CatalogSidebar.tsx` to keep the layout declarative on the Builder page while maintaining the `catalog` domains global boundaries.
+
 #### `features/workspace`
 The core feature for the 3D Builder experience, managing WebGL canvas interactions, camera controls, and 3D models.
+- **Builder Page Refactoring**: Extracted the main canvas layout wrapper into `WorkspaceLayout.tsx`, reducing the `builder/page.tsx` structural bloat.
