@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Outfit", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-brand-primary: #000000;
+  --color-brand-secondary: #000000;
+  --color-accent: #000000;
+  
+  --color-border-main: #e5e5e5;
+  --color-border-light: #f0f0f0;
+
+  --color-bg-base: #ffffff;
+  --color-bg-offset: #fcfcfc;
+  --color-bg-dark: #000000;
+
+  --color-text-main: #000000;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+}
+
+:root {
+  --navbar-height: 64px;
+  --page-pt: 80px;
+  --prada-tracking: 0.15em;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.font-prada {
+  text-transform: uppercase;
+  letter-spacing: var(--prada-tracking);
+  font-weight: 300;
+}
+
+.page-content {
+  padding-top: var(--page-pt);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d1d1d1;
+}
