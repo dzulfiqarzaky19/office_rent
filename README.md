@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Monis Rent - Premium Workspace Collection
 
-## Getting Started
+A Next.js e-commerce and 3D application for renting premium workspace setups (desks, chairs, accessories).
 
-First, run the development server:
+## Architecture: Feature-Sliced Design (FSD)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project has been heavily refactored from a standard Next.js directory structure into a modular Feature-Sliced Design.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Our goal is to explicitly separate concerns and push the React Client Boundary (`"use client"`) as deep down the component tree as possible. This ensures great Developer Experience (DX), maximum Server-Side Rendering (SSR) performance, and an easily maintainable codebase.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The architecture is divided into the following layers:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### `src/app/`
+Contains only Next.js routing files (`page.tsx`, `layout.tsx`) and global styles. Route handlers are purely Server Components that fetch data (if necessary) and compose features.
 
-## Learn More
+### `src/shared/`
+Contains generic UI components, motion wrappers, and utilities used across the entire application.
+- **`shared/motion/FadeIn.tsx`**: A client-side motion wrapper that accepts server components as children, preventing client-side JS bloat.
+- **`shared/components/motion/MotionButton.tsx`**: A purely client-side interactive button, extracted to prevent entire pages from becoming client components.
 
-To learn more about Next.js, take a look at the following resources:
+### `src/features/`
+Organized strictly by business domains. A "feature" encapsulates its own components, local state, hooks, and types.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### `features/home`
+The landing page feature set.
+- **Refactoring Note**: Removed `"use client"` entirely from `FinalCTA.tsx` and `HeroSection.tsx` by extracting the interactive `motion.button` into the shared `MotionButton` component. This allows the landing page to stream fully from the server.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### `features/catalog`
+Manages the product data and global cart state.
+- **Zustand Store (`useCatalogStore`)**: Manages the global state for selected desks, chairs, accessories, and rental periods. Handles complex derived calculations like `totalPrice`, `monthlySavings`, and `allSelectedItems` so UI components remain declarative.
 
-## Deploy on Vercel
+#### `features/checkout`
+The checkout and order confirmation flow.
+- **Refactoring Note**: Broken down an initially massive 400-line `page.tsx` into small, purely presentational UI components (`CheckoutHeader`, `DeliveryForm`, `EstimatedTotal`, etc.).
+- The interactive glue was centralized within a specific boundary (`CheckoutClient.tsx`).
+- For optimal DX and re-usability, complex form state and WhatsApp message-generation logic was extracted into a custom hook (`useCheckoutForm.ts`), leaving the UI completely devoid of business logic and making it 100% focused on presentation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### `features/workspace`
+The core feature for the 3D Builder experience, managing WebGL canvas interactions, camera controls, and 3D models.
