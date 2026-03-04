@@ -1,2 +1,2 @@
-// Re-export from new location for backwards compatibility
-export { default } from "@/components/ui/ProductCard";
+// Re-export from new FSD location
+export { default } from "@/features/catalog/components/ProductCard";
