@@ -27,11 +27,13 @@ export const SceneContent = () => {
         shadow-mapSize-height={1024}
         color="#ef8354"
       />
+
       <directionalLight
         position={[-3, 4, -1]}
         intensity={0.4}
         color="#4f5d75"
       />
+
       <pointLight
         position={[0.5, 1.2, -1.2]}
         intensity={3}
@@ -39,6 +41,7 @@ export const SceneContent = () => {
         distance={3}
         decay={2}
       />
+
       <pointLight
         position={[0, 2.5, 0]}
         intensity={1}
@@ -48,6 +51,7 @@ export const SceneContent = () => {
       />
 
       <Environment preset="sunset" />
+
       <ContactShadows
         position={[0, 0.01, 0]}
         opacity={0.35}

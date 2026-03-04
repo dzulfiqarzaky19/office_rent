@@ -38,8 +38,11 @@ export const SummaryPanel = () => {
 
             <div className="flex flex-col h-full min-h-0 bg-white relative">
               <SummaryHeader />
+
               <SummaryPricingToggle />
+
               <SummaryItems />
+
               <SummaryFooter />
             </div>
           </SlideDrawer>

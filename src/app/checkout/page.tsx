@@ -5,6 +5,7 @@ export default function CheckoutPage() {
   return (
     <main className="relative min-h-screen bg-white">
       <Navbar />
+
       <CheckoutClient />
     </main>
   );
