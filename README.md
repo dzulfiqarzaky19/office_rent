@@ -20,13 +20,9 @@ I wanted to provide an update on the technical task. Due to some unexpected sche
 
 I’ve spent today architecting the solution using a Feature-Sliced Design to ensure scalability and optimizing the 3D asset pipeline, creating the assets, optimizing them (PBR to Draco-compressed GLB) to meet high-performance web standards.
 
-I’m on track to submit the finished, production-ready build by Friday. I appreciate your patience—I wanted to ensure the quality of the delivery reflected my actual standard of work rather than rushing a sub-optimal version.
+I’m on track to submit the finished, production-ready build by Today. I appreciate your patience—I wanted to ensure the quality of the delivery reflected my actual standard of work rather than rushing a sub-optimal version.
 
 ---
-
-## 🚀 The Approach
-
-Our goal was to create a **"Visual-First"** rental experience that prioritizes user excitement and immediate feedback.
 
 ### Technical High-Level
 
@@ -36,9 +32,9 @@ Our goal was to create a **"Visual-First"** rental experience that prioritizes u
 
 ---
 
-## ✅ Must-Haves Implementation
+## Must-Haves Implementation
 
-- [x] **Multiple Options**: At least 3 desk options and 3 chair options (Electrical, Mechanical, Simple).
+- [x] **Multiple Options**: At least 2 desk options and 2 chair options (Electrical, Mechanical, Simple).
 - [x] **Accessories**: Fully functional accessory catalog (Monitors, Lamps, Plants, Webcams).
 - [x] **Visual Updates**: Real-time 3D preview updates instantly as items are added/changed.
 - [x] **Checkout Summary**: A detailed summary view calculating total price and savings.
@@ -95,7 +91,7 @@ function computeDerived(selectedDesk, selectedChair, accessories, rentalPeriod) 
 
 ---
 
-## ⚡ Performance & Assets
+## Performance & Assets
 
 - **Asset Compression**: All images converted to **WebP** (~70% reduction).
 - **3D Optimization**: GLB models optimized with `gltf-transform` (Mesh deduping, resizing), specifically reducing `desk_2.glb` from **25MB to 8MB**.
@@ -103,7 +99,7 @@ function computeDerived(selectedDesk, selectedChair, accessories, rentalPeriod) 
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - [ ] **Cloud Assets**: Move all WebP and GLB files to an S3/CDN bucket for faster global delivery.
 - [ ] **Advanced Persistence**: Integrate `zustand/middleware/persist` for local workspace caching.
@@ -112,7 +108,7 @@ function computeDerived(selectedDesk, selectedChair, accessories, rentalPeriod) 
 
 ---
 
-## 👨‍💻 Developer Experience
+## Developer Experience
 
 ### Quick Start
 
