@@ -94,7 +94,7 @@ function computeDerived(selectedDesk, selectedChair, accessories, rentalPeriod) 
 ## Performance & Assets
 
 - **Asset Compression**: All images converted to **WebP** (~70% reduction).
-- **3D Optimization**: GLB models optimized with `gltf-transform` (Mesh deduping, resizing), specifically reducing `desk_2.glb` from **25MB to 8MB**.
+- **3D Optimization**: GLB models optimized with `gltf-transform` (Mesh deduping, resizing), specifically reducing `desk_2.glb` from **25MB to 200kb**.
 - **WebGL Lifecycle**: Utilizing `@react-three/drei`'s `<KeyboardControls>` for cleaner input management than raw event listeners.
 
 ---
